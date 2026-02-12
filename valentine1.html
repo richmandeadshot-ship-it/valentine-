@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DEAR SAMITRA WILL YOU BE MY VALENTINE❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+        background: #ffd6e0;
+    }
+
+    /* HEART BACKGROUND */
+    .heart-bg {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(circle at 10px 10px, #ff4d6d 6px, transparent 7px),
+          radial-gradient(circle at 30px 30px, #ff6b81 6px, transparent 7px);
+        background-size: 40px 40px;
+        background-color: #ffd6e0;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* PAGES */
+    .page {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    #page1 {
+        z-index: 2;
+    }
+
+    #page2 {
+        opacity: 0;
+        transform: scale(1.1);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    #page2.show {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+        z-index: 2;
+    }
+
+    /* CARD */
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        color: #ff4d6d;
+    }
+
+    button {
+        padding: 12px 25px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #no {
+        background: #ccc;
+        position: absolute;
+    }
+
+    /* LETTER ANIMATION */
+    .letter-wrapper {
+        perspective: 1000px;
+    }
+
+    .letter {
+        background: white;
+        width: 80%;
+        max-width: 520px;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        text-align: center;
+        transform-origin: top;
+        animation: openLetter 1.5s ease forwards;
+    }
+
+    @keyframes openLetter {
+        0% {
+            transform: rotateX(-90deg);
+            opacity: 0;
+        }
+        100% {
+            transform: rotateX(0deg);
+            opacity: 1;
+        }
+    }
+
+    .letter p {
+        font-size: 16px;
+        line-height: 1.7;
+        white-space: pre-line;
+    }
+
+    /* FLOATING HEARTS */
+    .heart {
+        position: absolute;
+        color: red;
+        animation: float 6s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes float {
+        from { transform: translateY(100vh); opacity: 1; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="heart-bg"></div>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+    <div class="card">
+        <h1>Will you be my Valentine? 💖</h1>
+        <button id="yes" onclick="goToPage2()">Yes 😍</button>
+        <button id="no" onmouseover="moveNo()">No 😢</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <div class="letter-wrapper">
+        <div class="letter">
+            <h1>💌 My Letter to You 💌</h1>
+            <p>
+Halooo maaa ❤️,
+
+I made this just for you.
+Every little thing about you
+means more to me than I can explain.YOU ARE ENOUGH FOR ME
+ i am sooo gratefull and  lucky to have you in my life maa💕
+
+💕💕Thank you for always being with me eventhough i am robot.
+Happy Valentine’s Day CHELAMMMM
+I LOVEEEE YOUUUU SOOOO MUCHHHHH ♾️ 💕💕
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveNo() {
+        const btn = document.getElementById("no");
+        btn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+        btn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+    }
+
+    function goToPage2() {
+        document.getElementById("page1").style.opacity = "0";
+        document.getElementById("page1").style.transform = "scale(0.9)";
+        setTimeout(() => {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").classList.add("show");
+        }, 800);
+    }// floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 30 + 12 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }, 250);
+</script>
+
+</body>
+</html>
